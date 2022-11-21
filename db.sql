@@ -99,3 +99,20 @@ ALTER TABLE `cart_items`
     ADD CONSTRAINT `cart_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- --------------------------------------------------------
+-- Add timestamp to all tables
+
+ALTER TABLE `categories` ADD `created_at` DATETIME NOT NULL AFTER `parent_id`;
+
+ALTER TABLE `products` ADD `created_at` DATETIME NOT NULL AFTER `category_id`;
+
+ALTER TABLE `users` ADD `created_at` DATETIME NOT NULL AFTER `last_name`;
+
+ALTER TABLE `orders` ADD `updated_at` DATETIME NOT NULL AFTER `created_at`;
+
+ALTER TABLE `order_items` ADD `updated_at` DATETIME NOT NULL AFTER `price`;
+
+ALTER TABLE `carts` ADD `updated_at` DATETIME NOT NULL AFTER `created_at`;
+
+ALTER TABLE `cart_items` ADD `updated_at` DATETIME NOT NULL AFTER `price`;
+
+-- --------------------------------------------------------
