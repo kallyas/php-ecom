@@ -1,7 +1,7 @@
 <?php
 // css files are loaded from outside the public folder
 // so we need to go back one level
-$css_dir = '../css/';
+$css_dir = '../public/css/';
 ?>
 <!DOCTYPE html>
 <html lang="en">
