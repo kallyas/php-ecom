@@ -1,5 +1,11 @@
 <?php
 require_once '../partials/header.php';
+require_once '../includes/products.php';
+require_once '../includes/config.php';
+
+$products = new Product($db);
+$products = $products->read();
+$featured = [$products[0], $products[1], $products[2]];
 ?>
 <body>
     <!-- Navigation -->
@@ -25,36 +31,20 @@ require_once '../partials/header.php';
                 <h1>Featured Products</h1>
             </div>
             <div class="featured__products">
-                <div class="featured__product">
-                    <div class="featured__product__img">
-                        <img src="../img/featured1.jpg" alt="featured1">
+                <!-- loop through the first 3 products -->
+                <?php foreach ($featured as $product) : ?>
+                    <div class="featured__product">
+                        <div class="featured__product__image">
+                            <img src="http://placehold.it/350x150" alt="">
+                        </div>
+                        <div class="featured__product__info">
+                            <h3><?php echo $product['name']; ?></h3>
+                            <p><?php echo $product['description']; ?></p>
+                            <p><?php echo $product['price']; ?></p>
+                            <a href="product.php?id=<?php echo $product['id']; ?>">View</a>
+                        </div>
                     </div>
-                    <div class="featured__product__info">
-                        <h3>Product 1</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="featured__product">
-                    <div class="featured__product__img">
-                        <img src="../img/featured2.jpg" alt="featured2">
-                    </div>
-                    <div class="featured__product__info">
-                        <h3>Product 2</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="featured__product">
-                    <div class="featured__product__img">
-                        <img src="../img/featured3.jpg" alt="featured3">
-                    </div>
-                    <div class="featured__product__info">
-                        <h3>Product 3</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
