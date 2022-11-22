@@ -324,7 +324,7 @@ class User {
     // login check
     function login() {
         // Query to read single record
-        $query = "SELECT id, name, password, access_level, status FROM " . $this->table_name . " WHERE email = ? LIMIT 0,1";
+        $query = "SELECT id, first_name, last_name, password, access_level, status FROM " . $this->table_name . " WHERE email = ? LIMIT 0,1";
 
         // Prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -348,7 +348,7 @@ class User {
 
             // Assign values to object properties
             $this->id = $row['id'];
-            $this->name = $row['name'];
+            $this->name = $row['first_name'] . ' ' . $row['last_name'];
             $this->access_level = $row['access_level'];
             $this->status = $row['status'];
 
