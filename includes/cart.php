@@ -1,7 +1,6 @@
 <?php
 // cart class that will handle cart operations upon ajax requests via javascript
 
-require_once "config.php";
 
 class Cart {
     // database connection and table name

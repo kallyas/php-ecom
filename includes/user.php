@@ -321,4 +321,46 @@ class User {
         $this->access_level_name = $row['access_level_name'];
     }
 
+    // login check
+    function login() {
+        // Query to read single record
+        $query = "SELECT id, name, password, access_level, status FROM " . $this->table_name . " WHERE email = ? LIMIT 0,1";
+
+        // Prepare query statement
+        $stmt = $this->conn->prepare($query);
+
+        // Sanitize
+        $this->email = htmlspecialchars(strip_tags($this->email));
+
+        // Bind given email value
+        $stmt->bindParam(1, $this->email);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Get number of rows
+        $num = $stmt->rowCount();
+
+        // If email exists, assign values to object properties for easy access and use for php sessions
+        if ($num > 0) {
+            // Get record details / values
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Assign values to object properties
+            $this->id = $row['id'];
+            $this->name = $row['name'];
+            $this->access_level = $row['access_level'];
+            $this->status = $row['status'];
+
+            // Check if password is correct
+            $password_is_correct = password_verify($this->password, $row['password']);
+
+            // Return true if email exists in the database and if password is correct
+            return $password_is_correct;
+        }
+
+        // Return false if email does not exist in the database
+        return false;
+    }
+
 }
