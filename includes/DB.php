@@ -1,10 +1,10 @@
 <?php
 
 // define globals
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'php_ecommerce');
+$DB_HOST = "localhost";
+$DB_USER = "root";
+$DB_PASS = "";
+$DB_NAME = "php_ecommerce";
 
 class DB
 {
@@ -13,8 +13,9 @@ class DB
 
     private function __construct()
     {
-        $this->conn = new PDO("mysql:host=$GLOBALS[DB_HOST];dbname=$GLOBALS[DB_NAME]", $GLOBALS[DB_USER], $GLOBALS[DB_PASS]);
+        $this->conn = new PDO("mysql:host=" . $GLOBALS['DB_HOST'] . ";dbname=" . $GLOBALS['DB_NAME'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
     }
 
     public static function getInstance()
