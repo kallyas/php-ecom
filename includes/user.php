@@ -13,7 +13,7 @@ class User {
     public $password;
     public $access_level;
     public $access_level_name;
-    public $created;
+    public $created_at;
 
     // Constructor with $db as database connection
     public function __construct($db) {
@@ -48,7 +48,7 @@ class User {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    first_name=:first_name, last_name=:last_name, email=:email, access_level=:access_level, password=:password, created=:created";
+                    first_name=:first_name, last_name=:last_name, email=:email, access_level=:access_level, password=:password, created_at=:created_at";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
@@ -58,7 +58,8 @@ class User {
         $this->last_name = htmlspecialchars(strip_tags($this->last_name));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->access_level = htmlspecialchars(strip_tags($this->access_level));
-        $this->password = htmlspecialchars(strip_tags($this->password));
+        $this->password = htmlspecialchars(strip_tags(password_hash($this->password, PASSWORD_BCRYPT)));
+        $this->created_at = new DateTime();
 
         // Bind values
         $stmt->bindParam(":first_name", $this->first_name);
@@ -66,7 +67,7 @@ class User {
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":access_level", $this->access_level);
         $stmt->bindParam(":password", $this->password);
-        $stmt->bindParam(":created", $this->created);
+        $stmt->bindParam(":created_at", $this->created_at->format('Y-m-d H:i:s'));
 
         // Execute query
         if ($stmt->execute()) {
@@ -331,7 +332,7 @@ class User {
     // login check
     function login() {
         // Query to read single record
-        $query = "SELECT id, first_name, last_name, password, access_level, status FROM " . $this->table_name . " WHERE email = ? LIMIT 0,1";
+        $query = "SELECT id, first_name, last_name, password, access_level FROM " . $this->table_name . " WHERE email = ? LIMIT 0,1";
 
         // Prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -358,7 +359,6 @@ class User {
             $this->first_name = $row['first_name'];
             $this->last_name = $row['last_name'];
             $this->access_level = $row['access_level'];
-            $this->status = $row['status'];
 
             // Check if password is correct
             $password_is_correct = password_verify($this->password, $row['password']);

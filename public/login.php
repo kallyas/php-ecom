@@ -3,7 +3,13 @@ session_start();
 // check if user is logged in and has admin access, redirect to admin dashboard
 if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 'Admin'){
     header("Location: {$home_url}admin/index.php");
+} 
+
+// check if user is logged in and has customer access, redirect to customer dashboard
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 'Customer'){
+    header("Location: {$home_url}customer/index.php");
 }
+
 require_once '../includes/config.php';
 require_once '../includes/user.php';
 
