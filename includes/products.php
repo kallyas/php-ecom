@@ -15,6 +15,7 @@ class Product {
     public $category_id;
     public $category_name;
     public $timestamp;
+    public $image;
 
     // Constructor with $db as database connection
     public function __construct($db) {
@@ -25,7 +26,7 @@ class Product {
     function read() {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -49,7 +50,7 @@ class Product {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description, category_id=:category_id, timestamp=:timestamp";
+                    name=:name, price=:price, description=:description, category_id=:category_id, timestamp=:timestamp, image=:image";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
@@ -60,6 +61,7 @@ class Product {
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->category_id = htmlspecialchars(strip_tags($this->category_id));
         $this->timestamp = htmlspecialchars(strip_tags($this->timestamp));
+        $this->image = htmlspecialchars(strip_tags($this->image));
 
         // Bind values
         $stmt->bindParam(":name", $this->name);
@@ -67,6 +69,7 @@ class Product {
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":category_id", $this->category_id);
         $stmt->bindParam(":timestamp", $this->timestamp);
+        $stmt->bindParam(":image", $this->image);
 
         // Execute query
         if ($stmt->execute()) {
@@ -80,7 +83,7 @@ class Product {
     function readOne() {
         // Query to read single record
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -109,6 +112,7 @@ class Product {
         $this->description = $row['description'];
         $this->category_id = $row['category_id'];
         $this->category_name = $row['category_name'];
+        $this->image = $row['image'];
 
     }
 
@@ -176,7 +180,7 @@ class Product {
     function search($keywords) {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -209,7 +213,7 @@ class Product {
     public function readPaging($from_record_num, $records_per_page) {
         // Select query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN

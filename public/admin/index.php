@@ -8,10 +8,17 @@ require_once '../../includes/user.php';
 
 // instantiate user object
 $user = new User($db);
+$base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
 // check if user is logged in and has admin access
-if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSION['access_level'] != 'Admin'){
-    header("Location: {$home_url}login.php?action=not_admin");
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['access_level'] != 'Admin') {
+    header("Location: {$base_url}index.php");
+}
+
+// check if user is not logged in
+if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
+    error_log("User not logged in");
+    header("Location: {$base_url}login.php");
 }
 ?>
 <!DOCTYPE html>

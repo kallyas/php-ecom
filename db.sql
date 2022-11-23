@@ -116,3 +116,5 @@ ALTER TABLE `carts` ADD `updated_at` DATETIME NOT NULL AFTER `created_at`;
 ALTER TABLE `cart_items` ADD `updated_at` DATETIME NOT NULL AFTER `price`;
 
 -- --------------------------------------------------------
+
+ALTER TABLE `users` ADD `access_level` VARCHAR(255) NOT NULL DEFAULT 'Customer' AFTER `created_at`;
