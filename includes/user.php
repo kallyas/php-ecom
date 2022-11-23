@@ -7,7 +7,8 @@ class User {
 
     // Object properties
     public $id;
-    public $name;
+    public $first_name;
+    public $last_name;
     public $email;
     public $password;
     public $access_level;
@@ -23,7 +24,7 @@ class User {
     function read() {
         // Select all query
         $query = "SELECT
-                    u.id, u.name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
@@ -47,19 +48,21 @@ class User {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, email=:email, access_level=:access_level, password=:password, created=:created";
+                    first_name=:first_name, last_name=:last_name, email=:email, access_level=:access_level, password=:password, created=:created";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
 
         // Sanitize
-        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->first_name = htmlspecialchars(strip_tags($this->first_name));
+        $this->last_name = htmlspecialchars(strip_tags($this->last_name));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->access_level = htmlspecialchars(strip_tags($this->access_level));
         $this->password = htmlspecialchars(strip_tags($this->password));
 
         // Bind values
-        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":first_name", $this->first_name);
+        $stmt->bindParam(":last_name", $this->last_name);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":access_level", $this->access_level);
         $stmt->bindParam(":password", $this->password);
@@ -77,7 +80,7 @@ class User {
     function readOne() {
         // Query to read single record
         $query = "SELECT
-                    u.id, u.name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
@@ -101,7 +104,8 @@ class User {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Set values to object properties
-        $this->name = $row['name'];
+        $this->first_name = $row['first_name'];
+        $this->last_name = $row['last_name'];
         $this->email = $row['email'];
         $this->access_level = $row['access_level'];
         $this->access_level_name = $row['access_level_name'];
@@ -113,7 +117,7 @@ class User {
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    name=:name, email=:email, access_level=:access_level
+                    first_name=:first_name, last_name=:last_name, email=:email, access_level=:access_level
                 WHERE
                     id = :id";
 
@@ -121,13 +125,15 @@ class User {
         $stmt = $this->conn->prepare($query);
 
         // Sanitize
-        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->first_name = htmlspecialchars(strip_tags($this->first_name));
+        $this->last_name = htmlspecialchars(strip_tags($this->last_name));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->access_level = htmlspecialchars(strip_tags($this->access_level));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         // Bind new values
-        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':first_name', $this->first_name);
+        $stmt->bindParam(':last_name', $this->last_name);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':access_level', $this->access_level);
         $stmt->bindParam(':id', $this->id);
@@ -166,14 +172,14 @@ class User {
     function search($keywords) {
         // Query to search records
         $query = "SELECT
-                    u.id, u.name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
                         access_levels a
                             ON u.access_level = a.id
                 WHERE
-                    u.name LIKE ? OR u.email LIKE ? OR a.name LIKE ?
+                    u.first_name, u.last_name LIKE ? OR u.email LIKE ? OR a.name LIKE ?
                 ORDER BY
                     u.created DESC";
 
@@ -199,7 +205,7 @@ class User {
     public function readPaging($from_record_num, $records_per_page) {
         // Query to read records with limit clause
         $query = "SELECT
-                    u.id, u.name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
@@ -255,7 +261,8 @@ class User {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Set values to object properties
-        $this->name = $row['name'];
+        $this->first_name = $row['first_name'];
+        $this->last_name = $row['last_name'];
     }
 
     // Used to read user email by its ID
@@ -348,7 +355,8 @@ class User {
 
             // Assign values to object properties
             $this->id = $row['id'];
-            $this->name = $row['first_name'] . ' ' . $row['last_name'];
+            $this->first_name = $row['first_name'];
+            $this->last_name = $row['last_name'];
             $this->access_level = $row['access_level'];
             $this->status = $row['status'];
 
