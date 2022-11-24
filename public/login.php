@@ -62,6 +62,8 @@ if($_POST){
                 <div class="form__group">
                     <input type="submit" value="Login">
                 </div>
+                <div class="form__group">
+                    <p>Don't have an account? <a href="register.php">Register</a></p>
             </form>
         </div>
     </div>

@@ -6,6 +6,7 @@ session_start();
 require_once '../../includes/config.php';
 require_once '../../includes/user.php';
 require_once '../../includes/products.php';
+require_once '../../includes/helpers.php';
 
 // instantiate user object
 $user = new User($db);
@@ -13,15 +14,15 @@ $product = new Product($db);
 $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
 // check if user is logged in and has admin access
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['access_level'] != 'Admin') {
-    header("Location: {$base_url}index.php");
-}
+// if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['access_level'] != 'Admin') {
+//     header("Location: {$base_url}index.php");
+// }
 
 // check if user is not logged in
-if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
-    error_log("User not logged in");
-    header("Location: {$base_url}login.php");
-}
+// if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
+//     error_log("User not logged in");
+//     header("Location: {$base_url}login.php");
+// }
 
 $recent_users = $user->read();
 $recent_products = $product->read();
@@ -106,8 +107,8 @@ $recent_products = $product->read();
         <i class='bx bx-search' ></i>
       </div>
       <div class="profile-details">
-        <!--<img src="images/profile.jpg" alt="">-->
-        <span class="admin_name">Prem Shahi</span>
+        <!-- <img src="images/profile.jpg" alt=""> -->
+        <span class="admin_name">adminName</span>
         <i class='bx bx-chevron-down' ></i>
       </div>
     </nav>

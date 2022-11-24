@@ -14,24 +14,11 @@ require_once '../partials/header.php'
                 <a href="index.php">Home</a>
                 <a href="about.php">About</a>
                 <a href="contact.php">Contact</a>
+                <a href="login.php">Login</a>
             </div>
         </nav>
      </header>
     
-        <!-- <section class="hero">
-            <div class="hero__container">
-                <div class="hero__title">
-                    <h1>Shop</h1>
-                </div>
-                <div class="hero__subtitle">
-                    <h2>Shop for your favorite products</h2>
-                </div>
-                <div class="hero__btn">
-                    <a href="products.php">Shop Now</a>
-                </div>
-            </div>
-        </section> -->
-
     <!--About-->
         <section class="about">
             <div class="about__container">
