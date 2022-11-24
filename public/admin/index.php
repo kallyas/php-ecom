@@ -5,9 +5,11 @@ session_start();
 // get database connection
 require_once '../../includes/config.php';
 require_once '../../includes/user.php';
+require_once '../../includes/products.php';
 
 // instantiate user object
 $user = new User($db);
+$product = new Product($db);
 $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
 // check if user is logged in and has admin access
@@ -20,6 +22,11 @@ if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
     error_log("User not logged in");
     header("Location: {$base_url}login.php");
 }
+
+$recent_users = $user->read();
+$recent_products = $product->read();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

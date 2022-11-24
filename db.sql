@@ -78,6 +78,12 @@ CREATE TABLE IF NOT EXISTS `cart_items` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS `access_levels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -117,4 +123,11 @@ ALTER TABLE `cart_items` ADD `updated_at` DATETIME NOT NULL AFTER `price`;
 
 -- --------------------------------------------------------
 
-ALTER TABLE `users` ADD `access_level` VARCHAR(255) NOT NULL DEFAULT 'Customer' AFTER `created_at`;
+ALTER TABLE `users` ADD `access_level` INT NOT NULL AFTER `last_name`;
+
+ALTER TABLE `users`
+      ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`access_level`) REFERENCES `access_levels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --------------------------------------------------------
+
+ALTER TABLE `products` ADD `image` VARCHAR(255) NOT NULL AFTER `category_id`;

@@ -14,7 +14,7 @@ class Product {
     public $price;
     public $category_id;
     public $category_name;
-    public $timestamp;
+    public $created_at;
     public $image;
 
     // Constructor with $db as database connection
@@ -26,14 +26,14 @@ class Product {
     function read() {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
                         categories c
                             ON p.category_id = c.id
                 ORDER BY
-                    p.timestamp DESC";
+                    p.created_at DESC";
 
         // Prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -83,7 +83,7 @@ class Product {
     function readOne() {
         // Query to read single record
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -180,7 +180,7 @@ class Product {
     function search($keywords) {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -189,7 +189,7 @@ class Product {
                 WHERE
                     p.name LIKE ? OR p.description LIKE ? OR c.name LIKE ?
                 ORDER BY
-                    p.timestamp DESC";
+                    p.created_at DESC";
 
         // Prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -213,13 +213,13 @@ class Product {
     public function readPaging($from_record_num, $records_per_page) {
         // Select query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.timestamp
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
                         categories c
                             ON p.category_id = c.id
-                ORDER BY p.timestamp DESC
+                ORDER BY p.created_at DESC
                 LIMIT ?, ?";
 
         // Prepare query statement

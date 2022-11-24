@@ -24,14 +24,14 @@ class User {
     function read() {
         // Select all query
         $query = "SELECT
-                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created_at, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
                         access_levels a
                             ON u.access_level = a.id
                 ORDER BY
-                    u.created DESC";
+                    u.created_at DESC";
 
         // Prepare query statement
         $stmt = $this->conn->prepare($query);
