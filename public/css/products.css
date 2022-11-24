@@ -1,0 +1,130 @@
+.product-boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.new__product__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 700px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new__product__container .form__group {
+  margin-bottom: 20px;
+}
+
+.new__product__container .form__group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.new__product__container .form__group input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.new__product__container .form__group input[type="file"] {
+  padding: 0;
+}
+
+.new__product__container .form__group input[type="file"] + label {
+  display: block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.new__product__container .form__group input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+.products__table__container {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.products__table__container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products__table__container table th,
+.products__table__container table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.products__table__container table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.products__table__container table td {
+  background-color: #f5f5f5;
+}
+
+.products__table__container table td img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.products__table__container table td a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.products__table__container table td a:nth-child(2) {
+    background-color: #333;
+    color: #fff;
+}
+
+.products__table__container table td .delete__btn:hover {
+  background-color: #f00;
+}
+
+.products__table__container table td .edit__btn:hover {
+  background-color: #333;
+}
