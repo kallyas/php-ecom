@@ -131,3 +131,11 @@ ALTER TABLE `users`
 -- --------------------------------------------------------
 
 ALTER TABLE `products` ADD `image` VARCHAR(255) NOT NULL AFTER `category_id`;
+
+-- --------------------------------------------------------------
+
+INSERT INTO `access_levels` (`id`, `name`) VALUES
+(1, 'Customer'),
+(2, 'Admin');
+
+ALTER TABLE `users` CHANGE `access_level` `access_level` INT(11) NOT NULL DEFAULT '1';

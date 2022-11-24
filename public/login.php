@@ -1,12 +1,12 @@
 <?php
 session_start();
 // check if user is logged in and has admin access, redirect to admin dashboard
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 'Admin'){
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 2){
     header("Location: {$home_url}admin/index.php");
 } 
 
 // check if user is logged in and has customer access, redirect to customer dashboard
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 'Customer'){
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 1){
     header("Location: {$home_url}customer/index.php");
 }
 
@@ -15,6 +15,7 @@ require_once '../includes/user.php';
 
 // instantiate user object
 $user = new User($db);
+$error = "";
 
 // check if login form was submitted
 if($_POST){
@@ -33,7 +34,7 @@ if($_POST){
     }
     // login failed
     else{
-        echo "<div class='alert alert-danger'>Login failed. Email or password is incorrect.</div>";
+        $error = "Login failed. Email or password is incorrect.";
     }
 }
 ?>
@@ -52,6 +53,9 @@ if($_POST){
             <h1>Login</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                 <div class="form__group">
+                    <?php if($error != ""){ ?>
+                        <div class="error"><?php echo $error; ?></div>
+                    <?php } ?>
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" required>
                 </div>
@@ -64,6 +68,7 @@ if($_POST){
                 </div>
                 <div class="form__group">
                     <p>Don't have an account? <a href="register.php">Register</a></p>
+                </div>
             </form>
         </div>
     </div>
