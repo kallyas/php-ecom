@@ -104,7 +104,6 @@ if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
         <i class='bx bx-chevron-down' ></i>
       </div>
     </nav>
-
     <div class="home-content">
       <div class="overview-boxes">
         <div class="box">
@@ -140,75 +139,108 @@ if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
           </div>
           <i class='bx bxs-cart-download cart four' ></i>
         </div>
-      </div>
-
-     
-    </div>
-        <div>
-          <div class="button">
-            <a href="#">See All</a>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Total Revenue</div>
+            <div class="number">1,876</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Up from yesterday</span>
+            </div>
           </div>
+          <i class='bx bx-money cart three' ></i>
         </div>
-        <div class="top-sales box">
-          <div class="title">Top Seling Product</div>
-          <ul class="top-sales-details">
-            <li>
-            <a href="#">
-              <!--<img src="images/sunglasses.jpg" alt="">-->
-              <span class="product">Vuitton Sunglasses</span>
-            </a>
-            <span class="price">$1107</span>
-          </li>
-          <li>
-            <a href="#">
-               <!--<img src="images/jeans.jpg" alt="">-->
-              <span class="product">Hourglass Jeans </span>
-            </a>
-            <span class="price">$1567</span>
-          </li>
-          <li>
-            <a href="#">
-             <!-- <img src="images/nike.jpg" alt="">-->
-              <span class="product">Nike Sport Shoe</span>
-            </a>
-            <span class="price">$1234</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/scarves.jpg" alt="">-->
-              <span class="product">Hermes Silk Scarves.</span>
-            </a>
-            <span class="price">$2312</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/blueBag.jpg" alt="">-->
-              <span class="product">Succi Ladies Bag</span>
-            </a>
-            <span class="price">$1456</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/bag.jpg" alt="">-->
-              <span class="product">Gucci Womens's Bags</span>
-            </a>
-            <span class="price">$2345</span>
-          <li>
-            <a href="#">
-              <!--<img src="images/addidas.jpg" alt="">-->
-              <span class="product">Addidas Running Shoe</span>
-            </a>
-            <span class="price">$2345</span>
-          </li>
-          <li>
-            <a href="#">
-             <!--<img src="images/shirt.jpg" alt="">-->
-              <span class="product">Bilack Wear's Shirt</span>
-            </a>
-            <span class="price">$1245</span>
-          </li>
-          </ul>
+      </div>
+      <div class="products-boxes">
+        <div class="recent-orders">
+          <div class="card-header">
+            <h2>Recent Orders</h2>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <td>Order ID</td>
+                <td>Customer</td>
+                <td>Order Date</td>
+                <td>Total</td>
+                <td>Status</td>
+                <td>Invoice</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>12/12/2021</td>
+                <td>$100</td>
+                <td><span class="badge success">Delivered</span></td>
+                <td><i class='bx bx-download' ></i></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>John Doe</td>
+                <td>12/12/2021</td>
+                <td>$100</td>
+                <td><span class="badge success">Delivered</span></td>
+                <td><i class='bx bx-download' ></i></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>John Doe</td>
+                <td>12/12/2021</td>
+                <td>$100</td>
+                <td><span class="badge success">Delivered</span></td>
+                <td><i class='bx bx-download' ></i></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>John Doe</td>
+                <td>12/12/2021</td>
+                <td>$100</td>
+                <td><span class="badge success">Delivered</span></td>
+                <td><i class='bx bx-download' ></i></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- table pagination -->
+          <div class="pagination">
+            <a href="#"><i class='bx bx-chevrons-left'></i></a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#"><i class='bx bx-chevrons-right'></i></a>
+          </div> 
         </div>
+    </div>
+    <div class="users-boxes">
+      <div class="recent-customers">
+        <div class="card-header">
+          <h2>Recent Customers</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <td>Customer</td>
+              <td>Email</td>
+              <td>Phone</td>
+              <td>Country</td>
+              <td>City</td>
+              <td>Order</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Doe</td>
+              <td>johdoe@email.com</td>
+              <td>1234567890</td>
+              <td>USA</td>
+              <td>New York</td>
+              <td><i class='bx bx-download' ></i></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
