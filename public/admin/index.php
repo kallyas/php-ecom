@@ -229,25 +229,41 @@ $recent_products = $product->read();
         <table>
           <thead>
             <tr>
-              <td>Customer</td>
+              <td>User ID</td>
+              <td>First Name</td>
+              <td>Last Name</td>
               <td>Email</td>
-              <td>Phone</td>
-              <td>Country</td>
-              <td>City</td>
               <td>Order</td>
             </tr>
           </thead>
           <tbody>
+            <?php if($recent_users > 0){ ?>
+              <?php foreach($recent_users as $user): ?>
             <tr>
-              <td>John Doe</td>
-              <td>johdoe@email.com</td>
-              <td>1234567890</td>
-              <td>USA</td>
-              <td>New York</td>
-              <td><i class='bx bx-download' ></i></td>
+              <td><?= $user['id']; ?></td>
+              <td><?= $user['first_name'] ?></td>
+              <td><?= $user['last_name'] ?></td>
+              <td><?= $user['email'] ?></td>
+              <td><span class="badge success">View</span></td>
             </tr>
+            <?php endforeach; ?>
+            <?php }else{ ?>
+              <tr>
+                <td colspan="5">No Data Found</td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
+        <!-- table pagination -->
+        <div class="pagination">
+            <a href="#"><i class='bx bx-chevrons-left'></i></a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#"><i class='bx bx-chevrons-right'></i></a>
+          </div> 
       </div>
     </div>
   </section>
