@@ -139,3 +139,8 @@ INSERT INTO `access_levels` (`id`, `name`) VALUES
 (2, 'Admin');
 
 ALTER TABLE `users` CHANGE `access_level` `access_level` INT(11) NOT NULL DEFAULT '1';
+
+-- --------------------------------------------------------
+
+ALTER TABLE `products` ADD `status` VARCHAR(20) NOT NULL AFTER `category_id`;
+ALTER TABLE `products` ADD `quantity` INT NOT NULL AFTER `category_id`;
