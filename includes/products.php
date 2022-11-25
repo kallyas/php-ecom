@@ -1,6 +1,8 @@
 <!-- File that handles products crud -->
 <?php
 
+require_once 'helpers.php';
+
 
 class Product {
     // Database connection and table name
@@ -16,6 +18,8 @@ class Product {
     public $category_name;
     public $created_at;
     public $image;
+    public $quantity;
+    public $status;
 
     // Constructor with $db as database connection
     public function __construct($db) {
@@ -26,7 +30,7 @@ class Product {
     function read() {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -50,7 +54,7 @@ class Product {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description, category_id=:category_id, timestamp=:timestamp, image=:image";
+                    name=:name, price=:price, description=:description, category_id=:category_id, created_at=:created_at, image=:image, quantity=:quantity, status=:status";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
@@ -60,16 +64,20 @@ class Product {
         $this->price = htmlspecialchars(strip_tags($this->price));
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->category_id = htmlspecialchars(strip_tags($this->category_id));
-        $this->timestamp = htmlspecialchars(strip_tags($this->timestamp));
+        $this->created_at = new DateTime();
         $this->image = htmlspecialchars(strip_tags($this->image));
+        $this->quantity = htmlspecialchars(strip_tags($this->quantity));
+        $this->status = htmlspecialchars(strip_tags($this->status));
 
         // Bind values
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":price", $this->price);
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":category_id", $this->category_id);
-        $stmt->bindParam(":timestamp", $this->timestamp);
+        $stmt->bindParam(":created_at", $this->created_at->format('Y-m-d H:i:s'));
         $stmt->bindParam(":image", $this->image);
+        $stmt->bindParam(":quantity", $this->quantity);
+        $stmt->bindParam(":status", $this->status);
 
         // Execute query
         if ($stmt->execute()) {
@@ -83,7 +91,7 @@ class Product {
     function readOne() {
         // Query to read single record
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -113,6 +121,9 @@ class Product {
         $this->category_id = $row['category_id'];
         $this->category_name = $row['category_name'];
         $this->image = $row['image'];
+        $this->quantity = $row['quantity'];
+        $this->status = $row['status'];
+
 
     }
 
@@ -125,7 +136,10 @@ class Product {
                     name = :name,
                     price = :price,
                     description = :description,
-                    category_id = :category_id
+                    category_id = :category_id,
+                    image = :image,
+                    quantity = :quantity,
+                    status = :status
                 WHERE
                     id = :id";
 
@@ -138,6 +152,10 @@ class Product {
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->category_id = htmlspecialchars(strip_tags($this->category_id));
         $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->image = htmlspecialchars(strip_tags($this->image));
+        $this->quantity = htmlspecialchars(strip_tags($this->quantity));
+        $this->status = htmlspecialchars(strip_tags($this->status));
+
 
         // Bind new values
         $stmt->bindParam(':name', $this->name);
@@ -145,6 +163,9 @@ class Product {
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':category_id', $this->category_id);
         $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':image', $this->image);
+        $stmt->bindParam(':quantity', $this->quantity);
+        $stmt->bindParam(':status', $this->status);
 
         // Execute the query
         if ($stmt->execute()) {
@@ -156,6 +177,8 @@ class Product {
 
     // Delete the product
     function delete() {
+        // delete image from server
+        deleteImage($this->image);
         // Delete query
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
 
@@ -180,7 +203,7 @@ class Product {
     function search($keywords) {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -213,7 +236,7 @@ class Product {
     public function readPaging($from_record_num, $records_per_page) {
         // Select query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN

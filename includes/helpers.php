@@ -4,6 +4,7 @@
 
 // upload image and return the image path
 function uploadImage($data) {
+    error_log('uploadImage');
     $target_dir = "uploads/";
     // check if target directory exists, if not create it
     if (!file_exists($target_dir)) {
@@ -46,4 +47,10 @@ function uploadImage($data) {
 function base_url($path) {
     $base_url = "http://localhost:8080/";
     return $base_url . $path;
+}
+
+function deleteImage($path) {
+    if (file_exists($path)) {
+        unlink($path);
+    }
 }
