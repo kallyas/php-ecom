@@ -5,7 +5,7 @@
 // upload image and return the image path
 function uploadImage($data) {
     error_log('uploadImage');
-    $target_dir = "uploads/";
+    $target_dir = "../uploads/";
     // check if target directory exists, if not create it
     if (!file_exists($target_dir)) {
         mkdir($target_dir, 0777, true);
@@ -22,14 +22,15 @@ function uploadImage($data) {
     }
     // Check if file already exists
     if (file_exists($target_file)) {
-        $uploadOk = 0;
+        // give a new name to the file
+        $target_file = $target_dir . uniqid() . basename($data["name"]);
     }
     // Check file size
     if ($data["size"] > 500000) {
         $uploadOk = 0;
     }
     // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "svg" && $imageFileType != "webp") {
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
@@ -45,7 +46,7 @@ function uploadImage($data) {
 }
 
 function base_url($path) {
-    $base_url = "http://localhost:8080/";
+    $base_url = "http://localhost:8000/";
     return $base_url . $path;
 }
 

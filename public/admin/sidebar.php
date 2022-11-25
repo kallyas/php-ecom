@@ -5,13 +5,13 @@
     </div>
     <ul class="nav-links">
         <li>
-            <a href="./" class="active">
+            <a href="/admin" class="active">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Dashboard</span>
             </a>
         </li>
         <li>
-            <a href="./products.php">
+            <a href="/admin/products.php">
                 <i class='bx bx-box'></i>
                 <span class="links_name">Products</span>
             </a>

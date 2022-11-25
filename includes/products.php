@@ -20,6 +20,7 @@ class Product {
     public $image;
     public $quantity;
     public $status;
+    public $featured = 0;
 
     // Constructor with $db as database connection
     public function __construct($db) {
@@ -30,7 +31,7 @@ class Product {
     function read() {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status, p.featured
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -54,7 +55,7 @@ class Product {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description, category_id=:category_id, created_at=:created_at, image=:image, quantity=:quantity, status=:status";
+                    name=:name, price=:price, description=:description, category_id=:category_id, created_at=:created_at, image=:image, quantity=:quantity, status=:status, featured=:featured";
 
         // Prepare query
         $stmt = $this->conn->prepare($query);
@@ -68,6 +69,7 @@ class Product {
         $this->image = htmlspecialchars(strip_tags($this->image));
         $this->quantity = htmlspecialchars(strip_tags($this->quantity));
         $this->status = htmlspecialchars(strip_tags($this->status));
+        $this->featured = htmlspecialchars(strip_tags($this->featured));
 
         // Bind values
         $stmt->bindParam(":name", $this->name);
@@ -78,6 +80,7 @@ class Product {
         $stmt->bindParam(":image", $this->image);
         $stmt->bindParam(":quantity", $this->quantity);
         $stmt->bindParam(":status", $this->status);
+        $stmt->bindParam(":featured", $this->featured);
 
         // Execute query
         if ($stmt->execute()) {
@@ -91,7 +94,7 @@ class Product {
     function readOne() {
         // Query to read single record
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status, p.featured
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -123,6 +126,7 @@ class Product {
         $this->image = $row['image'];
         $this->quantity = $row['quantity'];
         $this->status = $row['status'];
+        $this->featured = $row['featured'];
 
 
     }
@@ -139,7 +143,8 @@ class Product {
                     category_id = :category_id,
                     image = :image,
                     quantity = :quantity,
-                    status = :status
+                    status = :status,
+                    featured = :featured
                 WHERE
                     id = :id";
 
@@ -155,6 +160,7 @@ class Product {
         $this->image = htmlspecialchars(strip_tags($this->image));
         $this->quantity = htmlspecialchars(strip_tags($this->quantity));
         $this->status = htmlspecialchars(strip_tags($this->status));
+        $this->featured = htmlspecialchars(strip_tags($this->featured));
 
 
         // Bind new values
@@ -166,6 +172,7 @@ class Product {
         $stmt->bindParam(':image', $this->image);
         $stmt->bindParam(':quantity', $this->quantity);
         $stmt->bindParam(':status', $this->status);
+        $stmt->bindParam(':featured', $this->featured);
 
         // Execute the query
         if ($stmt->execute()) {
@@ -203,7 +210,7 @@ class Product {
     function search($keywords) {
         // Select all query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status, p.featured
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
@@ -236,7 +243,7 @@ class Product {
     public function readPaging($from_record_num, $records_per_page) {
         // Select query
         $query = "SELECT
-                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.image, p.created_at, p.quantity, p.status, p.featured
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN

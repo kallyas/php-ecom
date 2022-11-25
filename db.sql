@@ -163,3 +163,8 @@ INSERT INTO `categories` (`id`, `name`, `parent_id`, `created_at`) VALUES
 (12, 'Living Room', 10, '2015-01-01 00:00:00'),
 (13, 'Dining Room', 10, '2015-01-01 00:00:00'),
 (14, 'Clothing', 0, '2015-01-01 00:00:00');
+
+-- --------------------------------------------------------
+-- add featured column to products table
+
+ALTER TABLE `products` ADD `featured` TINYINT(1) NOT NULL AFTER `category_id`;

@@ -3,9 +3,9 @@ require_once '../partials/header.php';
 require_once '../includes/products.php';
 require_once '../includes/config.php';
 
-$products = new Product($db);
-$products = $products->read();
-$featured = [$products[0], $products[1], $products[2]];
+$product = new Product($db);
+$products = $product->read();
+$featured = $product->read();
 ?>
 <body>
     <!-- Navigation -->
@@ -34,17 +34,20 @@ $featured = [$products[0], $products[1], $products[2]];
             <div class="featured__products">
                 <!-- loop through the first 3 products -->
                 <?php foreach ($featured as $product) : ?>
-                    <div class="featured__product">
-                        <div class="featured__product__image">
-                            <img src="http://placehold.it/350x150" alt="">
+                    <!-- check if product is featured -->
+                    <?php if ($product['featured'] == 1) : ?>
+                        <div class="featured__product">
+                            <div class="featured__product__image">
+                                <img src="images/<?php echo $product['image']; ?>" alt="">
+                            </div>
+                            <div class="featured__product__info">
+                                <h3><?php echo $product['name']; ?></h3>
+                                <p><?php echo $product['description']; ?></p>
+                                <p>$<?php echo $product['price']; ?></p>
+                                <a href="product.php?id=<?php echo $product['id']; ?>">View Product</a>
+                            </div>
                         </div>
-                        <div class="featured__product__info">
-                            <h3><?php echo $product['name']; ?></h3>
-                            <p><?php echo $product['description']; ?></p>
-                            <p><?php echo $product['price']; ?></p>
-                            <a href="product.php?id=<?php echo $product['id']; ?>">View</a>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -56,86 +59,20 @@ $featured = [$products[0], $products[1], $products[2]];
                 <h1>Products</h1>
             </div>
             <div class="products__grid">
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product1.jpg" alt="product1">
+                <!-- loop through the rest of the products -->
+                <?php foreach ($products as $product) : ?>
+                    <div class="products__grid__item">
+                        <div class="products__grid__item__image">
+                            <img src="<?php echo base_url($product['image']) ?>" alt="">
+                        </div>
+                        <div class="products__grid__item__info">
+                            <h3><?php echo $product['name']; ?></h3>
+                            <p><?php echo $product['description']; ?></p>
+                            <p><?php echo $product['price']; ?></p>
+                            <a href="product.php?id=<?php echo $product['id']; ?>">View</a>
+                        </div>
                     </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 1</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product2.jpg" alt="product2">
-                    </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 2</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product3.jpg" alt="product3">
-                    </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 3</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product4.jpg" alt="product4">
-                    </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 4</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product5.jpg" alt="product5">
-                    </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 5</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product6.jpg" alt="product6">
-                    </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 6</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product7.jpg" alt="product7">
-                    </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 7</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="products__grid__item">
-                    <div class="products__grid__item__img">
-                        <img src="../img/product8.jpg" alt="product8">
-                    </div>
-                    <div class="products__grid__item__info">
-                        <h3>Product 8</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <!-- pagination -->
             <div class="pagination">

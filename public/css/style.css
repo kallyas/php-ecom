@@ -127,10 +127,16 @@
     transform: translateY(-5px);
 }
 
-.featured__product .featured__product__img {
+.featured__product .featured__product__image, .products__grid__item .products__grid__item__image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.featured__product__image img, .products__grid__item__image img {
     width: 100%;
-    height: 50%;
-    border-radius: 10px 10px 0 0;
+    height: 100%;
+    object-fit: cover;
 }
 
 .featured__product .featured__product__info {
