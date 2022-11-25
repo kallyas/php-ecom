@@ -9,7 +9,6 @@ $product = new Product($db);
 $category = new Category($db);
 $error = '';
 if($_POST && isset($_POST['create__product'])) {
-    error_log('submit');
     $product->name = $_POST['product__name'];
     $product->price = $_POST['product__price'];
     $product->description = $_POST['product__description'];
@@ -18,16 +17,14 @@ if($_POST && isset($_POST['create__product'])) {
     $product->quantity = $_POST['product__quantity'];
     $product->status = $_POST['product__status'];
 
-    // debug to see if data is assigned to object
-    // echo '<pre>';
-    // var_dump($product);
-    // echo '</pre>';
-    // exit;
-
-    if($product->create()) {
-        header('Location: products.php');
+    if($product->image == false) {
+        $error = 'Image upload failed';
     } else {
-        $error = 'Something went wrong. Please try again.';
+        if($product->create()) {
+            header('Location: products.php');
+        } else {
+            $error = 'Something went wrong. Please try again.';
+        }
     }
     
 }
@@ -60,7 +57,8 @@ $categories = $category->read();
                 <div class="new__product__container">
                     <div class="new__product__form">
                         <?php if($error) : ?>
-                            <div class="error">
+                            <div class="error__alert">
+                                <span class="close__btn" onclick="this.parentElement.style.display='none';">&times;</span>
                                 <p><?php echo $error ?></p>
                             </div>
                         <?php endif; ?>
