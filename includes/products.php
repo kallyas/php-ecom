@@ -128,7 +128,7 @@ class Product {
         $this->status = $row['status'];
         $this->featured = $row['featured'];
 
-
+        return $row;
     }
 
     // Update the product
