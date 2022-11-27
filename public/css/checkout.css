@@ -1,0 +1,129 @@
+/* style for checkout page */
+/* checkout products on the right */
+/* checkout form on the left */
+/* checkout__section is the base layout of the page */
+/* checkout__container contains all the divs */
+
+.checkout__section {
+  display: flex;
+  margin: 150px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.checkout__section .checkout__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.checkout__container .checkout__items {
+  width: 50%;
+}
+
+.checkout__container .checkout__items h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.checkout__items .checkout__items__container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.checkout__items__container .checkout__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.checkout__item .checkout__item__image {
+  width: 100px;
+  height: 100px;
+  margin: 0;
+}
+
+.checkout__item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.checkout__item .checkout__item__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.checkout__item .checkout__item__info h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.checkout__item .checkout__item__info p {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.alert {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+/* Checkout Form */
+.checkout__container .checkout__form {
+  width: 50%;
+}
+
+.checkout__container .checkout__form h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.checkout__form .form__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.checkout__form .form__group label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.checkout__form .form__group input,
+.checkout__form .form__group select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.checkout__form .form__group input:focus,
+.checkout__form .form__group select:focus {
+  outline: none;
+}
+
+.checkout__form .form__group input[type="submit"] {
+  background-color: #000;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 10px;
+}
