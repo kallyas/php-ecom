@@ -1,12 +1,12 @@
 <?php
 session_start();
 // check if user is logged in and has admin access, redirect to admin dashboard
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 2){
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 2) {
     header("Location: {$home_url}admin/index.php");
-} 
+}
 
 // check if user is logged in and has customer access, redirect to customer dashboard
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 1){
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && $_SESSION['access_level'] == 1) {
     header("Location: {$home_url}customer/index.php");
 }
 
@@ -16,30 +16,55 @@ require_once '../includes/user.php';
 // instantiate user object
 $user = new User($db);
 $error = "";
+$redirect_to = "";
+
+// check if there is a redirect_to parameter in the query string
+if (isset($_GET['redirect_to'])) {
+    $redirect_to = urldecode($_GET['redirect_to']);
+}
 
 // check if login form was submitted
-if($_POST){
+if ($_POST) {
+    if (isset($_POST['redirect_to'])) {
+        $redirect_to = urldecode($_POST['redirect_to']);
+    }
     // set user property values
     $user->email = $_POST['email'];
     $user->password = $_POST['password'];
     // login user
-    if($user->login()){
+    if ($user->login()) {
         // set session values
         $_SESSION['logged_in'] = true;
         $_SESSION['access_level'] = $user->access_level;
-        $_SESSION['name'] = $user->name;
+        $_SESSION['name'] = $user->first_name . ' ' . $user->last_name;
         $_SESSION['email'] = $user->email;
+        $_SESSION['user_id'] = $user->id;
         // redirect to admin dashboard
-        header("Location: {$home_url}admin/index.php");
+        if ($user->access_level == 2) {
+            if (!empty($redirect_to)) {
+                header("Location: {$redirect_to}");
+            } else {
+                header("Location: {$home_url}admin/index.php");
+            }
+        } else {
+            // redirect to customer dashboard
+            if (!empty($redirect_to)) {
+                header("Location: {$redirect_to}");
+            } else {
+                header("Location: {$home_url}customer/index.php");
+            }
+        }
     }
     // login failed
-    else{
+    else {
         $error = "Login failed. Email or password is incorrect.";
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,13 +72,14 @@ if($_POST){
     <title>Login</title>
     <link rel="stylesheet" href="../css/login.css">
 </head>
+
 <body>
     <div class="login__container">
         <div class="login__form">
             <h1>Login</h1>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form__group">
-                    <?php if($error != ""){ ?>
+                    <?php if ($error != "") { ?>
                         <div class="error"><?php echo $error; ?></div>
                     <?php } ?>
                     <label for="email">Email</label>
@@ -73,4 +99,5 @@ if($_POST){
         </div>
     </div>
 </body>
+
 </html>

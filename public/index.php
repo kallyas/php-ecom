@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../partials/header.php';
 require_once '../includes/products.php';
 require_once '../includes/config.php';
@@ -20,7 +21,12 @@ $featured = $product->read();
                 <a href="index.php">Home</a>
                 <a href="about.php">About</a>
                 <a href="contact.php">Contact</a>
-                <a href="login.php">Login</a>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
+                    <a href="../checkout.php">Cart</a>
+                    <a href="../logout.php">Logout</a>
+                <?php else : ?>
+                    <a href="../login.php">Login</a>
+                <?php endif; ?>
             </div>
         </nav>
     </header>

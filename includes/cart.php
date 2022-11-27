@@ -5,14 +5,14 @@
 class Cart {
     // database connection and table name
     private $conn;
-    private $table_name = "cart";
+    private $table_name = "carts";
 
     // object properties
     public $id;
     public $user_id;
     public $product_id;
     public $quantity;
-    public $timestamp;
+    public $created_at;
 
     // constructor with $db as database connection
     public function __construct($db) {
@@ -23,7 +23,7 @@ class Cart {
     function read() {
         // select all query
         $query = "SELECT
-                    c.id, c.user_id, c.product_id, c.quantity, c.timestamp, p.name, p.price
+                    c.id, c.user_id, c.product_id, c.quantity, c.created_at, p.name, p.price, p.image, p.description
                 FROM
                     " . $this->table_name . " c
                     LEFT JOIN
@@ -32,7 +32,7 @@ class Cart {
                 WHERE
                     c.user_id = ?
                 ORDER BY
-                    c.timestamp DESC";
+                    c.created_at DESC";
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -42,7 +42,6 @@ class Cart {
 
         // execute query
         $stmt->execute();
-
         return $stmt;
     }
 
@@ -52,7 +51,7 @@ class Cart {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    user_id=:user_id, product_id=:product_id, quantity=:quantity, timestamp=:timestamp";
+                    user_id=:user_id, product_id=:product_id, quantity=:quantity, created_at=:created_at";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -61,13 +60,13 @@ class Cart {
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->product_id = htmlspecialchars(strip_tags($this->product_id));
         $this->quantity = htmlspecialchars(strip_tags($this->quantity));
-        $this->timestamp = htmlspecialchars(strip_tags($this->timestamp));
+        $this->created_at = new DateTime();
 
         // bind values
         $stmt->bindParam(":user_id", $this->user_id);
         $stmt->bindParam(":product_id", $this->product_id);
         $stmt->bindParam(":quantity", $this->quantity);
-        $stmt->bindParam(":timestamp", $this->timestamp);
+        $stmt->bindParam(":created_at", $this->created_at->format('Y-m-d H:i:s'));
 
         // execute query
         if ($stmt->execute()) {
@@ -154,7 +153,7 @@ class Cart {
     function search($keywords) {
         // select all query
         $query = "SELECT
-                    c.id, c.user_id, c.product_id, c.quantity, c.timestamp, p.name, p.price
+                    c.id, c.user_id, c.product_id, c.quantity, c.created_at, p.name, p.price
                 FROM
                     " . $this->table_name . " c
                     LEFT JOIN
@@ -163,7 +162,7 @@ class Cart {
                 WHERE
                     c.user_id = ? AND p.name LIKE ? OR p.description LIKE ?
                 ORDER BY
-                    c.timestamp DESC";
+                    c.created_at DESC";
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);

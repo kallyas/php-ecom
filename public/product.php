@@ -36,6 +36,13 @@ $product_details = $product->readOne();
         </nav>
     </header>
     <section class="product__section">
+        <div class="error">
+            <?php
+            if (isset($_GET['action']) && $_GET['action'] == 'failed') {
+                echo "<div class='alert alert-danger'>Unable to add product to cart.</div>";
+            }
+            ?>
+        </div>
         <div class="product__container">
             <div class="product__image">
                 <img src="../images/<?php echo $product_details['image']; ?>" alt="">
