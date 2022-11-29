@@ -18,6 +18,7 @@ function uploadImage($data) {
     if ($check !== false) {
         $uploadOk = 1;
     } else {
+        error_log("File is not an image.");
         $uploadOk = 0;
     }
     // Check if file already exists
@@ -26,12 +27,16 @@ function uploadImage($data) {
         $target_file = $target_dir . uniqid() . basename($data["name"]);
     }
     // Check file size
-    if ($data["size"] > 500000) {
+    if ($data["size"] > 50000000) {
         $uploadOk = 0;
+        // error_log("Sorry, your file is too large.");
     }
+
+    error_log($imageFileType, 0);
     // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "jpg" && $imageFileType != "svg" && $imageFileType != "webp") {
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "svg" && $imageFileType != "webp") {
         $uploadOk = 0;
+        // error_log("Sorry, only JPG, JPEG, PNG, SVG, WEBP & GIF files are allowed.");
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
@@ -46,7 +51,7 @@ function uploadImage($data) {
 }
 
 function base_url($path) {
-    $base_url = "http://localhost:8000/";
+    $base_url = "http://localhost:4000/";
     return $base_url . $path;
 }
 
