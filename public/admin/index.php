@@ -13,16 +13,16 @@ $user = new User($db);
 $product = new Product($db);
 $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
-// check if user is logged in and has admin access
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['access_level'] != 2) {
-    header("Location: {$base_url}index.php");
-}
+// // check if user is logged in and has admin access
+// if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['access_level'] != 2) {
+//     header("Location: {$base_url}index.php");
+// }
 
-// check if user is not logged in
-if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
-    error_log("User not logged in");
-    header("Location: {$base_url}login.php");
-}
+// // check if user is not logged in
+// if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != true) {
+//     error_log("User not logged in");
+//     header("Location: {$base_url}login.php");
+// }
 
 $recent_users = $user->read();
 $recent_products = $product->read();

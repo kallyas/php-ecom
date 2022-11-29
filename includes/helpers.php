@@ -30,7 +30,7 @@ function uploadImage($data) {
         $uploadOk = 0;
     }
     // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "svg" && $imageFileType != "webp") {
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "jpg" && $imageFileType != "svg" && $imageFileType != "webp") {
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error

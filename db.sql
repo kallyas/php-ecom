@@ -149,20 +149,20 @@ ALTER TABLE `products` ADD `quantity` INT NOT NULL AFTER `category_id`;
 -- insert default categories
 
 INSERT INTO `categories` (`id`, `name`, `parent_id`, `created_at`) VALUES
-(1, 'Electronics', 0, '2015-01-01 00:00:00'),
+(1, 'Electronics', 1, '2015-01-01 00:00:00'),
 (2, 'Cameras', 1, '2015-01-01 00:00:00'),
 (3, 'Laptops', 1, '2015-01-01 00:00:00'),
 (4, 'Mobile Phones', 1, '2015-01-01 00:00:00'),
 (5, 'Tablets', 1, '2015-01-01 00:00:00'),
 (6, 'TV', 1, '2015-01-01 00:00:00'),
 (7, 'Video Games', 1, '2015-01-01 00:00:00'),
-(8, 'Home', 0, '2015-01-01 00:00:00'),
+(8, 'Home', 1, '2015-01-01 00:00:00'),
 (9, 'Kitchen', 8, '2015-01-01 00:00:00'),
 (10, 'Furniture', 8, '2015-01-01 00:00:00'),
 (11, 'Bedroom', 10, '2015-01-01 00:00:00'),
 (12, 'Living Room', 10, '2015-01-01 00:00:00'),
 (13, 'Dining Room', 10, '2015-01-01 00:00:00'),
-(14, 'Clothing', 0, '2015-01-01 00:00:00');
+(14, 'Clothing', 1, '2015-01-01 00:00:00');
 
 -- --------------------------------------------------------
 -- add featured column to products table
