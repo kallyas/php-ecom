@@ -1,0 +1,145 @@
+.team-boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  gap: 20px;
+}
+.new__team__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 700px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new__team__container .form__group {
+  margin-bottom: 20px;
+}
+
+.new__team__container .form__group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.new__team__container .form__group input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.new__team__container .form__group input[type="file"] {
+  padding: 0;
+}
+
+.new__team__container .form__group input[type="file"] + label {
+  display: block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.new__team__container .form__group input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+.team_table__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.team_table__container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.team_table__container table thead tr th {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.team_table__container table tbody tr td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+}
+
+.team_table__container table tbody tr td img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.team_table__container table tbody tr td a {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.team_table__container table tbody tr td a.edit {
+  background-color: #f1c40f;
+  color: #fff;
+}
+
+.error__alert .close__btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* animate error_alert */
+  @keyframes error__alert__animation {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes error__alert__close__animation {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+
+
+
+
+
