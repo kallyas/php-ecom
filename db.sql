@@ -76,6 +76,16 @@ CREATE TABLE IF NOT EXISTS `cart_items` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--------------------------------------------------------
+
+CREATE TABLE IF NOT EXITS 'TEAM' (
+  'id' int(11) NOT NULL AUTO_INCREMENT,
+  'name' varchar(255) NOT NULL,
+  'description' text NOT NULL,
+  'parent_id' int(11) NOT NULL,
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 -- --------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `access_levels` (
@@ -168,3 +178,11 @@ INSERT INTO `categories` (`id`, `name`, `parent_id`, `created_at`) VALUES
 -- add featured column to products table
 
 ALTER TABLE `products` ADD `featured` TINYINT(1) NOT NULL AFTER `category_id`;
+
+-- --------------------------------------------------------
+-- add team members table
+INSERT INTO `team` (`id`, `name`, `description`, `parent_id`) VALUES
+(1, 'John Doe', 'CEO', 1),
+(2, 'Jane Doe', 'CTO', 1),
+(3, 'John Smith', 'CFO', 1),
+(4, 'Jane Smith', 'CMO', 1);

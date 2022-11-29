@@ -1,5 +1,6 @@
 <?php 
-require_once '../partials/header.php'
+require_once '../partials/header.php';
+require_once '../includes/products.php';
 ?>
 <body>
      <!-- Navigation -->
@@ -44,74 +45,47 @@ require_once '../partials/header.php'
                 <h1>Featured Products</h1>
             </div>
             <div class="featured__products">
-                <div class="featured__product">
-                    <div class="featured__product__img">
-                        <img src="../img/featured1.jpg" alt="featured1">
-                    </div>
-                    <div class="featured__product__info">
-                        <h3>Product 1</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="featured__product">
-                    <div class="featured__product__img">
-                        <img src="../img/featured2.jpg" alt="featured2">
-                    </div>
-                    <div class="featured__product__info">
-                        <h3>Product 2</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
-                <div class="featured__product">
-                    <div class="featured__product__img">
-                        <img src="../img/featured3.jpg" alt="featured3">
-                    </div>
-                    <div class="featured__product__info">
-                        <h3>Product 3</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                        <a href="product.php">View Product</a>
-                    </div>
-                </div>
+                <!-- loop through the first 3 products -->
+                <?php foreach ($featured as $product) : ?>
+                    <!-- check if product is featured -->
+                    <?php if ($product['featured'] == 1) : ?>
+                        <div class="featured__product">
+                            <div class="featured__product__image">
+                                <img src="images/<?php echo $product['image']; ?>" alt="">
+                            </div>
+                            <div class="featured__product__info">
+                                <h3><?php echo $product['name']; ?></h3>
+                                <p><?php echo $product['description']; ?></p>
+                                <p>$<?php echo $product['price']; ?></p>
+                                <a href="product.php?id=<?php echo $product['id']; ?>">View Product</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
 
     <!--team-->
     <section class="team">
-        <div class="team__container">
+        < class="team__container">
             <div class="team__title">
                 <h1>Our Team</h1>
             </div>
             <div class="team__members">
-                <div class="team__member">
-                    <div class="team__member__img">
-                        <img src="../img/team1.jpg" alt="team1">
+                <!-- loop through the team members  -->
+                <? foreach ($team as $member) : ?>
+                    <div class="team__member">
+                        <div class="team__member__image">
+                            <img src="images/<?php echo $member['image']; ?>" alt="">
+                        </div>
+                        <div class="team__member__info">
+                            <h3><?php echo $member['name']; ?></h3>
+                            <p><?php echo $member['position']; ?></p>
+                            <p><?php echo $member['description']; ?></p>
+                        </div>
                     </div>
-                    <div class="team__member__info">
-                        <h3>Member 1</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                    </div>
-                </div>
-                <div class="team__member">
-                    <div class="team__member__img">
-                        <img src="../img/team2.jpg" alt="team2">
-                    </div>
-                    <div class="team__member__info">
-                        <h3>Member 2</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                    </div>
-                </div>
-                <div class="team__member">
-                    <div class="team__member__img">
-                        <img src="../img/team3.jpg" alt="team3">
-                    </div>
-                    <div class="team__member__info">
-                        <h3>Member 3</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
