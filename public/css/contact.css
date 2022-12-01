@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 50px;
 }
 
@@ -83,7 +83,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
 }
 
 .contact__right .contact__form {
@@ -96,24 +96,70 @@
 }
 
 .contact__form .contact__input {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .contact__form .contact__button {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 300px;
-    background-color: #000;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 400;
-    cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 300px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/* an alert notification on top right corner */
+
+.alert {
+  position: fixed;
+  top: 10px;
+  right: 0;
+  width: 300px;
+  padding: 20px;
+  background-color: #f00;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: all 0.5s ease-in-out;
+  animation: alert 0.5s ease-in-out;
+}
+
+.alert-success {
+  background-color: #00ff00;
+}
+
+.alert-error {
+  background-color: #ff0000;
+}
+
+@keyframes alert {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.alert .closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
 }

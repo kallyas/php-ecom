@@ -186,3 +186,20 @@ INSERT INTO `team` (`id`, `name`, `description`, `parent_id`) VALUES
 (2, 'Jane Doe', 'CTO', 1),
 (3, 'John Smith', 'CFO', 1),
 (4, 'Jane Smith', 'CMO', 1);
+
+-- --------------------------------------------------------
+-- add table for contact page
+
+CREATE TABLE IF NOT EXISTS `contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+-- --------------------------------------------------------
+-- add created_at column to contact table
+
+ALTER TABLE `contact` ADD `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP AFTER `message`;
