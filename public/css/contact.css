@@ -1,0 +1,119 @@
+/* css for contact page */
+
+/* contact class starts below header/navbar */
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.contact__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 50px;
+}
+
+.contact__container .contact__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 50px;
+}
+
+.contact__container .contact__left .contact__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contact__container .contact__left .contact__text {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.contact__left .contact__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.contact__left .contact__info .contact__info-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.contact__info-box > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.contact__info-box > div > i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.contact__info-box > div > h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.contact__container .contact__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.contact__right .contact__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.contact__form .contact__input {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.contact__form .contact__button {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 400;
+    cursor: pointer;
+}

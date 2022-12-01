@@ -19,14 +19,16 @@ $error = "";
 $redirect_to = "";
 
 // check if there is a redirect_to parameter in the query string
-if (isset($_GET['redirect_to'])) {
+if (isset($_REQUEST['redirect_to'])) {
     $redirect_to = urldecode($_GET['redirect_to']);
 }
 
+error_log(print_r($redirect_to, true));
+
 // check if login form was submitted
 if ($_POST) {
-    if (isset($_POST['redirect_to'])) {
-        $redirect_to = urldecode($_POST['redirect_to']);
+    if (isset($_REQUEST['redirect_to'])) {
+        $redirect_to = urldecode($_GET['redirect_to']);
     }
     // set user property values
     $user->email = $_POST['email'];
@@ -41,14 +43,14 @@ if ($_POST) {
         $_SESSION['user_id'] = $user->id;
         // redirect to admin dashboard
         if ($user->access_level == 2) {
-            if (!empty($redirect_to)) {
+            if ($redirect_to !== "") {
                 header("Location: {$redirect_to}");
             } else {
                 header("Location: {$home_url}admin/index.php");
             }
         } else {
             // redirect to customer dashboard
-            if (!empty($redirect_to)) {
+            if ($redirect_to !== "") {
                 header("Location: {$redirect_to}");
             } else {
                 header("Location: {$home_url}customer/index.php");

@@ -24,32 +24,45 @@ require_once '../partials/header.php';
             </div>
         </nav>
     </header>
-   <!--contact form-->
+   <!--contact section -->
     <section class="contact">
-         <div class="contact__container">
-              <div class="contact__title">
-                <h1>Contact Us</h1>
-              </div>
-              <div class="contact__form">
-                <form action="">
-                     <div class="contact__form__group">
-                          <label for="name">Name</label>
-                          <input type="text" name="name" id="name">
-                     </div>
-                     <div class="contact__form__group">
-                          <label for="email">Email</label>
-                          <input type="email" name="email" id="email">
-                     </div>
-                     <div class="contact__form__group">
-                          <label for="message">Message</label>
-                          <textarea name="message" id="message" cols="30" rows="10"></textarea>
-                     </div>
-                     <div class="contact__form__group">
-                          <button type="submit">Submit</button>
-                     </div>
+        <div class="contact__container">
+            <div class="contact__left">
+                <h1 class="contact__title">Contact Us</h1>
+                <p class="contact__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+                <div class="contact__info">
+                    <div class="contact__info-box">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <span>123 Street, New York, USA</span>
+                        </div>
+                    </div>
+                    <div class="contact__info-box">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Call Us</h3>
+                            <span>+1 123 456 7890</span>
+                        </div>
+                    </div>
+                    <div class="contact__info-box">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email Us</h3>
+                            <span>shop@email.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact__right">
+                <form action="" class="contact__form">
+                    <input type="text" class="contact__input" placeholder="Name">
+                    <input type="email" class="contact__input" placeholder="Email">
+                    <textarea name="" id="" cols="0" rows="10" class="contact__input" placeholder="Message"></textarea>
+                    <input type="submit" value="Send" class="contact__button">
                 </form>
-              </div>
-         </div>
+            </div>
+        </div>
     </section>
     <!-- Footer -->
     <footer class="footer">

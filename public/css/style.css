@@ -294,14 +294,12 @@
 
 .footer {
     background-color: #000;
-    height: 50vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 0 2rem;
-    margin-top: 10rem;
     /* make footer stay at bottom always */
     position: relative;
     bottom: 0;
@@ -642,99 +640,6 @@
     font-weight: 500;
     color: #fff;
     margin-bottom: 1rem;
-}
-
-/* contact form  */
-.contact {
-    background-color: #000;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 2rem;
-    margin-top: 10rem;
-}
-
-.contact__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.contact__title {
-    font-size: 2rem;
-    font-weight: 400;
-    color: #fff;
-    margin-bottom: 1rem;
-    margin-top: 1.5rem;
-}
-
-.contact__form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.contact__form__group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    margin: 1rem;
-}
-
-.contact__form__group label {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #fff;
-    margin-bottom: 1rem;
-}
-
-.contact__form__group input {
-    width: 300px;
-    height: 50px;
-    border: none;
-    outline: none;
-    padding: 0 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: #000;
-    border-bottom: 1px solid #fff;
-}
-
-.contact__form__group textarea {
-    width: 300px;
-    height: 150px;
-    border: none;
-    outline: none;
-    padding: 0 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: #000;
-    border-bottom: 1px solid #fff;
-}
-
-.contact__form__group button {
-    width: 300px;
-    height: 50px;
-    border: none;
-    outline: none;
-    padding: 0 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: #000;
-    border-bottom: 1px solid #fff;
-    margin-top: 1rem;
 }
 
 
