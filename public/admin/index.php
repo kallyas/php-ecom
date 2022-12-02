@@ -7,10 +7,12 @@ require_once '../../includes/config.php';
 require_once '../../includes/user.php';
 require_once '../../includes/products.php';
 require_once '../../includes/helpers.php';
+require_once '../../includes/order.php';
 
 // instantiate user object
 $user = new User($db);
 $product = new Product($db);
+$order = new Order($db);
 $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
 // // check if user is logged in and has admin access
@@ -26,6 +28,7 @@ $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 
 $recent_users = $user->read();
 $recent_products = $product->read();
+$orders = $order->readAll();
 
 
 ?>
@@ -62,38 +65,16 @@ $recent_products = $product->read();
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>12/12/2021</td>
-                <td>$100</td>
-                <td><span class="badge success">Delivered</span></td>
-                <td><i class='bx bx-download' ></i></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>John Doe</td>
-                <td>12/12/2021</td>
-                <td>$100</td>
-                <td><span class="badge success">Delivered</span></td>
-                <td><i class='bx bx-download' ></i></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>John Doe</td>
-                <td>12/12/2021</td>
-                <td>$100</td>
-                <td><span class="badge success">Delivered</span></td>
-                <td><i class='bx bx-download' ></i></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>John Doe</td>
-                <td>12/12/2021</td>
-                <td>$100</td>
-                <td><span class="badge success">Delivered</span></td>
-                <td><i class='bx bx-download' ></i></td>
-              </tr>
+              <?php foreach($orders as $ord): ?>
+                  <tr>
+                  <td><?= $ord['id']; ?>
+                  <td><?= $ord['user_id']; ?>
+                  <td><?= $ord['created_at']; ?>
+                  <td><?= $ord['total']; ?>
+                  <td><span class="badge success">Delivered</span></td>
+                  <td><i class='bx bx-download' ></i></td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
           <!-- table pagination -->
@@ -124,7 +105,6 @@ $recent_products = $product->read();
             </tr>
           </thead>
           <tbody>
-            <?php if($recent_users > 0){ ?>
               <?php foreach($recent_users as $user): ?>
             <tr>
               <td><?= $user['id']; ?></td>
@@ -134,11 +114,6 @@ $recent_products = $product->read();
               <td><span class="badge success">View</span></td>
             </tr>
             <?php endforeach; ?>
-            <?php }else{ ?>
-              <tr>
-                <td colspan="5">No Data Found</td>
-              </tr>
-            <?php } ?>
           </tbody>
         </table>
         <!-- table pagination -->
