@@ -170,13 +170,6 @@ INSERT INTO `categories` (`id`, `name`, `parent_id`, `created_at`) VALUES
 
 ALTER TABLE `products` ADD `featured` TINYINT(1) NOT NULL AFTER `category_id`;
 
--- --------------------------------------------------------
--- add team members table
-INSERT INTO `team` (`id`, `name`, `description`, `parent_id`) VALUES
-(1, 'John Doe', 'CEO', 1),
-(2, 'Jane Doe', 'CTO', 1),
-(3, 'John Smith', 'CFO', 1),
-(4, 'Jane Smith', 'CMO', 1);
 
 -- --------------------------------------------------------
 -- add table for contact page
