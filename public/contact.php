@@ -58,7 +58,7 @@ if($_POST && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['me
         <div class="contact__container">
             <div class="contact__left">
                 <h1 class="contact__title">Contact Us</h1>
-                <p class="contact__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+                <p class="contact__text">Please feel free to reach out for help or inquiries </p>
                 <div class="contact__info">
                     <div class="contact__info-box">
                         <i class="fas fa-map-marker-alt"></i>
