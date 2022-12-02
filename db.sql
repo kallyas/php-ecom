@@ -78,12 +78,12 @@ CREATE TABLE IF NOT EXISTS `cart_items` (
 
 --------------------------------------------------------
 
-CREATE TABLE IF NOT EXITS 'TEAM' (
-  'id' int(11) NOT NULL AUTO_INCREMENT,
-  'name' varchar(255) NOT NULL,
-  'description' text NOT NULL,
-  'parent_id' int(11) NOT NULL,
-  PRIMARY KEY ('id')
+CREATE TABLE IF NOT EXITS `TEAM` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------

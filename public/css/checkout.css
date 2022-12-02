@@ -127,3 +127,9 @@
   font-weight: 500;
   padding: 10px;
 }
+
+/* disabled submit input */
+.checkout__form .form__group input[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
