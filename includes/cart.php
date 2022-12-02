@@ -184,4 +184,21 @@ class Cart {
         return $stmt;
     }
 
+    function count() {
+        // query to count all records
+        $query = "SELECT COUNT(*) as total_rows FROM " . $this->table_name . " WHERE user_id = ?";
+
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+
+        // bind user id variable
+        $stmt->bindParam(1, $this->user_id);
+
+        // execute query
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row['total_rows'];
+    }
+
 }

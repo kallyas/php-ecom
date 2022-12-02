@@ -17,6 +17,7 @@ $cart->user_id = $_SESSION['user_id'];
 $cart_items = $cart->read();
 $user->id = $_SESSION['user_id'];
 $user = $user->readOne();
+$count = $cart->count();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +109,7 @@ $user = $user->readOne();
                         </select>
                     </div>
                     <div class="form__group">
-                        <input type="submit" value="Place Order">
+                        <input type="submit" value="Place Order" <?php if ($count == 0) echo 'disabled'; ?>>
                     </div>
                 </form>
             </div>
