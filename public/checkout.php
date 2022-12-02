@@ -61,6 +61,8 @@ $cart_items = $cart->read();
                                 <p><?php echo $item['description']; ?></p>
                                 <p>Quantity: <?php echo $item['quantity']; ?></p>
                                 <p>Price: <?php echo $item['price']; ?></p>
+                                <span class="checkout__item__remove">
+                                    <a href="remove_from_cart.php?id=<?php echo $item['id']; ?>">Remove</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
