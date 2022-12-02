@@ -8,10 +8,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 require_once '../includes/config.php';
 require_once '../includes/cart.php';
+require_once '../includes/order.php';
+require_once '../includes/user.php';
 
 $cart = new Cart($db);
+$user = new User($db);
 $cart->user_id = $_SESSION['user_id'];
 $cart_items = $cart->read();
+$user->id = $_SESSION['user_id'];
+$user = $user->readOne();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,10 +75,14 @@ $cart_items = $cart->read();
             </div>
             <div class="checkout__form">
                 <h1>Shipping Address</h1>
-                <form action="checkout.php" method="post">
+                <form action="order.php" method="post">
                     <div class="form__group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" name="name" id="name" value="<?= $user['first_name'] . ' ' . $user['last_name']; ?>" readonly>
+                    </div>
+                    <div class="form__group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" value="<?= $user['email']; ?>" readonly>
                     </div>
                     <div class="form__group">
                         <label for="address">Address</label>
@@ -84,24 +93,12 @@ $cart_items = $cart->read();
                         <input type="text" name="city" id="city" required>
                     </div>
                     <div class="form__group">
-                        <label for="state">State</label>
-                        <input type="text" name="state" id="state" required>
-                    </div>
-                    <div class="form__group">
-                        <label for="zip">Zip</label>
-                        <input type="text" name="zip" id="zip" required>
-                    </div>
-                    <div class="form__group">
                         <label for="country">Country</label>
                         <input type="text" name="country" id="country" required>
                     </div>
                     <div class="form__group">
                         <label for="phone">Phone</label>
                         <input type="text" name="phone" id="phone" required>
-                    </div>
-                    <div class="form__group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" required>
                     </div>
                     <div class="form__group">
                         <label for="payment">Payment</label>

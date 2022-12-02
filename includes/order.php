@@ -8,15 +8,11 @@ class Order
 
     public $id;
     public $user_id;
-    public $name;
     public $address;
     public $city;
-    public $state;
-    public $zip;
     public $country;
     public $phone;
-    public $email;
-    public $payment;
+    public $payment_method;
     public $created_at;
 
     public function __construct($db)
@@ -26,32 +22,24 @@ class Order
 
     public function create()
     {
-        $query = 'INSERT INTO ' . $this->table_name . ' SET user_id = :user_id, name = :name, address = :address, city = :city, state = :state, zip = :zip, country = :country, phone = :phone, email = :email, payment = :payment, created_at = :created_at';
+        $query = 'INSERT INTO ' . $this->table_name . ' SET user_id = :user_id, address = :address, city = :city, country = :country, phone = :phone, payment_method = :payment_method, created_at = :created_at';
 
         $stmt = $this->conn->prepare($query);
 
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
-        $this->name = htmlspecialchars(strip_tags($this->name));
         $this->address = htmlspecialchars(strip_tags($this->address));
         $this->city = htmlspecialchars(strip_tags($this->city));
-        $this->state = htmlspecialchars(strip_tags($this->state));
-        $this->zip = htmlspecialchars(strip_tags($this->zip));
         $this->country = htmlspecialchars(strip_tags($this->country));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->payment = htmlspecialchars(strip_tags($this->payment));
+        $this->payment_method = htmlspecialchars(strip_tags($this->payment_method));
         $this->created_at = htmlspecialchars(strip_tags($this->created_at));
 
         $stmt->bindParam(':user_id', $this->user_id);
-        $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':city', $this->city);
-        $stmt->bindParam(':state', $this->state);
-        $stmt->bindParam(':zip', $this->zip);
         $stmt->bindParam(':country', $this->country);
         $stmt->bindParam(':phone', $this->phone);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':payment', $this->payment);
+        $stmt->bindParam(':payment_method', $this->payment_method);
         $stmt->bindParam(':created_at', $this->created_at);
 
         if ($stmt->execute()) {
@@ -104,7 +92,7 @@ class Order
 
     public function update()
     {
-        $query = 'UPDATE ' . $this->table_name . ' SET name = :name, address = :address, city = :city, state = :state, zip = :zip, country = :country, phone = :phone, email = :email, payment = :payment WHERE id = :id';
+        $query = 'UPDATE ' . $this->table_name . ' SET name = :name, address = :address, city = :city, state = :state, zip = :zip, country = :country, phone = :phone, email = :email, payment_method = :payment_method WHERE id = :id';
 
         $stmt = $this->conn->prepare($query);
 
@@ -116,7 +104,7 @@ class Order
         $this->country = htmlspecialchars(strip_tags($this->country));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->payment = htmlspecialchars(strip_tags($this->payment));
+        $this->payment_method = htmlspecialchars(strip_tags($this->payment_method));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt->bindParam(':name', $this->name);
@@ -127,7 +115,7 @@ class Order
         $stmt->bindParam(':country', $this->country);
         $stmt->bindParam(':phone', $this->phone);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':payment', $this->payment);
+        $stmt->bindParam(':payment_method', $this->payment_method);
         $stmt->bindParam(':id', $this->id);
 
         if ($stmt->execute()) {
@@ -156,7 +144,7 @@ class Order
 
     public function search($keywords)
     {
-        $query = 'SELECT * FROM ' . $this->table_name . ' WHERE name LIKE :keywords OR address LIKE :keywords OR city LIKE :keywords OR state LIKE :keywords OR zip LIKE :keywords OR country LIKE :keywords OR phone LIKE :keywords OR email LIKE :keywords OR payment LIKE :keywords';
+        $query = 'SELECT * FROM ' . $this->table_name . ' WHERE name LIKE :keywords OR address LIKE :keywords OR city LIKE :keywords OR state LIKE :keywords OR zip LIKE :keywords OR country LIKE :keywords OR phone LIKE :keywords OR email LIKE :keywords OR payment_method LIKE :keywords';
 
         $stmt = $this->conn->prepare($query);
 
