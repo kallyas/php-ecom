@@ -69,7 +69,7 @@ $featured = $product->read();
                 <?php foreach ($products as $product) : ?>
                     <div class="products__grid__item">
                         <div class="products__grid__item__image">
-                            <img src="<?php echo base_url($product['image']) ?>" alt="">
+                            <img src="images/<?php echo $product['image']; ?>" alt="">
                         </div>
                         <div class="products__grid__item__info">
                             <h3><?php echo $product['name']; ?></h3>
