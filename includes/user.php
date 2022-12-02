@@ -81,7 +81,7 @@ class User {
     function readOne() {
         // Query to read single record
         $query = "SELECT
-                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created_at, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
@@ -110,6 +110,7 @@ class User {
         $this->email = $row['email'];
         $this->access_level = $row['access_level'];
         $this->access_level_name = $row['access_level_name'];
+        return $row;
     }
 
     // Update user
@@ -173,7 +174,7 @@ class User {
     function search($keywords) {
         // Query to search records
         $query = "SELECT
-                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created_at, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
@@ -182,7 +183,7 @@ class User {
                 WHERE
                     u.first_name, u.last_name LIKE ? OR u.email LIKE ? OR a.name LIKE ?
                 ORDER BY
-                    u.created DESC";
+                    u.created_at DESC";
 
         // Prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -206,13 +207,13 @@ class User {
     public function readPaging($from_record_num, $records_per_page) {
         // Query to read records with limit clause
         $query = "SELECT
-                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created, a.name as access_level_name
+                    u.id, u.first_name, u.last_name, u.email, u.access_level, u.created_at, a.name as access_level_name
                 FROM
                     " . $this->table_name . " u
                     LEFT JOIN
                         access_levels a
                             ON u.access_level = a.id
-                ORDER BY u.created DESC
+                ORDER BY u.created_at DESC
                 LIMIT ?, ?";
 
         // Prepare query statement

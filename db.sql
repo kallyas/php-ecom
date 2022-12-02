@@ -203,3 +203,12 @@ CREATE TABLE IF NOT EXISTS `contact` (
 -- add created_at column to contact table
 
 ALTER TABLE `contact` ADD `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP AFTER `message`;
+
+-- --------------------------------------------------------
+-- add user info to the order
+
+ALTER TABLE `orders` ADD `address` VARCHAR(255) NOT NULL AFTER `created_at`;
+ALTER TABLE `orders` ADD `city` VARCHAR(255) NOT NULL AFTER `address`;
+ALTER TABLE `orders` ADD `country` VARCHAR(255) NOT NULL AFTER `city`;
+ALTER TABLE `orders` ADD `phone` VARCHAR(255) NOT NULL AFTER `country`;
+ALTER TABLE `orders` ADD `payment_method` VARCHAR(255) NOT NULL AFTER `phone`;
